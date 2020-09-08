@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="maps">Maps</string>
+    <string name="app_name">Kotlin Google Search Location</string>
+    <string name="title_activity_maps">Google Search Location</string>
 </resources>
