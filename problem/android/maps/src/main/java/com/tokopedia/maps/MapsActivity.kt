@@ -1,18 +1,27 @@
 package com.tokopedia.maps
 
 import android.Manifest
+import android.app.SearchManager
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
@@ -25,27 +34,159 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.tokopedia.maps.modul.KountryListFragment
 import java.io.IOException
 
 
-class MapsActivity : FragmentActivity(), OnMapReadyCallback, LocationListener,
+class MapsActivity : AppCompatActivity(), KountryListFragment.OnFragmentInteractionListener,  OnMapReadyCallback, LocationListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    override fun onFragmentInteraction(uri: Uri) {
+    }
+
+
+    //    maps
     private var mMap: GoogleMap? = null
     internal lateinit var mLastLocation: Location
     internal var mCurrLocationMarker: Marker? = null
     internal var mGoogleApiClient: GoogleApiClient? = null
     internal lateinit var mLocationRequest: LocationRequest
 
+
+    var toolbar: Toolbar? = null
+    var kountryListFragment: KountryListFragment? = null
+
+    //    var aboutFragment: RandomFragment? = null
+//    var bottomNavigationView: BottomNavigationView? = null
+    var searchView: SearchView? = null
+
+    // bottom navigation item selection
+    private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
+
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.home -> {
+                    addFragment(kountryListFragment!!)
+                    toolbar!!.visibility = View.VISIBLE
+                    return true
+                }
+//                R.id.favorite -> {
+//                    addFragment(aboutFragment!!,kountryListFragment!!)
+//                    toolbar!!.visibility = View.INVISIBLE
+//                    return true
+//                }
+            }
+            return false
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        prepareAllView()
+        // add kountry list fragment as default fragment
+        addFragment(kountryListFragment!!)
+
+//maps
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-//        val mapFragment = getChildFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+        prepareSearchView(menu)
+        return true
+    }
+
+    fun prepareAllView() {
+        prepareToolBar()
+//        prepareBottomNavView()
+        kountryListFragment = KountryListFragment.Companion.newInstance("", "")
+//        aboutFragment = RandomFragment.Companion.newInstance("","")
+    }
+
+    fun prepareToolBar() {
+        toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+    }
+
+
+    fun prepareSearchView(menu: Menu?) {
+        var menuItem = menu!!.findItem(R.id.cari)
+
+        //getting search view reference from menu item
+        searchView = menuItem.actionView as SearchView
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView!!.queryHint = "Masukan Nama Negara"
+        searchView!!.setSearchableInfo(
+                searchManager.getSearchableInfo(componentName))
+        searchView!!.maxWidth = Int.MAX_VALUE
+
+        //query text listener for search view
+        searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                kountryListFragment!!.adapter!!.getFilter().filter(query)
+
+
+                lateinit var location: String
+                location = searchView!!.getQuery().toString()
+                var addressList: List<Address>? = null
+
+                if (location == null || location == "") {
+                    Toast.makeText(applicationContext,"provide location", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    val geoCoder = Geocoder(this@MapsActivity)
+                    try {
+                        addressList = geoCoder.getFromLocationName(location, 1)
+
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    val address = addressList!![0]
+                    val latLng = LatLng(address.latitude, address.longitude)
+                    mMap!!.addMarker(MarkerOptions().position(latLng).title(location).snippet("Population: 4,137,400"))
+                    mMap!!.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+                    Toast.makeText(applicationContext, address.latitude.toString() + " " + address.longitude, Toast.LENGTH_LONG).show()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                Log.d("tag", "mListAdapter=" + kountryListFragment!!.adapter!!)
+                kountryListFragment!!.adapter!!.getFilter().filter(query)
+                return false
+            }
+        })
+    }
+
+    private fun addFragment(fragment: Fragment) {
+        if (fragment.isAdded) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out)
+                    .hide(fragment)
+                    .show(fragment)
+                    .commit()
+        } else {
+            supportFragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out)
+                    .hide(fragment)
+                    .add(R.id.content, fragment, fragment.javaClass.getSimpleName())
+                    .show(fragment)
+                    .commit()
+        }
+
+    }
+
+
+
+    //    maps
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -58,9 +199,7 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback, LocationListener,
             buildGoogleApiClient()
             mMap!!.isMyLocationEnabled = true
         }
-
     }
-
     @Synchronized
     protected fun buildGoogleApiClient() {
         mGoogleApiClient = GoogleApiClient.Builder(this)
@@ -127,28 +266,4 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback, LocationListener,
 
     }
 
-    fun searchLocation(view: View) {
-        val locationSearch:EditText = findViewById<EditText>(R.id.editText)
-        lateinit var location: String
-        location = locationSearch.text.toString()
-        var addressList: List<Address>? = null
-
-        if (location == null || location == "") {
-            Toast.makeText(applicationContext,"provide location",Toast.LENGTH_SHORT).show()
-        }
-        else{
-            val geoCoder = Geocoder(this)
-            try {
-                addressList = geoCoder.getFromLocationName(location, 1)
-
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            val address = addressList!![0]
-            val latLng = LatLng(address.latitude, address.longitude)
-            mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
-            mMap!!.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-            Toast.makeText(applicationContext, address.latitude.toString() + " " + address.longitude, Toast.LENGTH_LONG).show()
-        }
-    }
 }

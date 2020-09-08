@@ -11,7 +11,7 @@ import com.tokopedia.core.loadFile
 class OilReservoirActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_problem)
+        setContentView(R.layout.activity_oil)
 
         val webView = findViewById<WebView>(R.id.webView)
         webView.loadFile("oil_reservoir.html")

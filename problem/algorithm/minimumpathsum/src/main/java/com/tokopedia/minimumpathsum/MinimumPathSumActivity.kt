@@ -8,7 +8,7 @@ import com.tokopedia.core.loadFile
 class MinimumPathSumActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_problem)
+        setContentView(R.layout.activity_minimum)
         val webView = findViewById<WebView>(R.id.webView)
         webView.loadFile("minimum_path_sum.html");
 

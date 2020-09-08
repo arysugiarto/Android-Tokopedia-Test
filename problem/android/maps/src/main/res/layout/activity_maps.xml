@@ -1,36 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MapsActivity"
-    android:orientation="vertical">
-    <LinearLayout
+    tools:showIn="@layout/activity_maps"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/colorPrimary">
 
-        <EditText
-            android:layout_width="248dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_weight="0.5"
-            android:inputType="textPersonName"
-            android:hint="Search Location" />
+    </androidx.appcompat.widget.Toolbar>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:onClick="searchLocation"
-            android:text="Cari" />
-
-    </LinearLayout>
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         tools:context="com.example.mapwithmarker.view.MapsMarkerActivity" />
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/navigation_bottom">
+    </FrameLayout>
+
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/navigation_bottom"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="@color/white"-->
+<!--        app:itemIconTint="@color/menu_item_foreground"-->
+<!--        app:itemTextColor="@color/menu_item_foreground"-->
+<!--        app:menu="@menu/bottom_tab_bar_items" />-->
+
 </LinearLayout>

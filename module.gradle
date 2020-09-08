@@ -45,5 +45,57 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-location:15.0.1'
 
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    // rxandroid
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    kapt 'com.android.databinding:compiler:3.0.1'
+
+    //google map
+    implementation 'com.google.android.gms:play-services-maps:10.2.0'
+
+    //circular image
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //anko
+    implementation "org.jetbrains.anko:anko-commons:0.10.1"
+
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation project(":resources")
+
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    // rxandroid
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    kapt 'com.android.databinding:compiler:3.0.1'
+
+    //google map
+    implementation 'com.google.android.gms:play-services-maps:10.2.0'
+
+    //circular image
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //anko
+    implementation "org.jetbrains.anko:anko-commons:0.10.1"
+
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }

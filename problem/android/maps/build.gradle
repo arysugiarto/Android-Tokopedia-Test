@@ -1,2 +1,6 @@
+dependencies {
+
+}
 apply plugin: 'com.android.library'
 apply from: "$rootProject.projectDir/module.gradle"
+apply plugin: 'kotlin-android'
