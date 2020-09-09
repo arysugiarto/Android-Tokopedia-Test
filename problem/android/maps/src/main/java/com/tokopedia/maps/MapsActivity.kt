@@ -149,7 +149,7 @@ class MapsActivity : AppCompatActivity(), KountryListFragment.OnFragmentInteract
                     }
                     val address = addressList!![0]
                     val latLng = LatLng(address.latitude, address.longitude)
-                    mMap!!.addMarker(MarkerOptions().position(latLng).title(location).snippet("Population: 4,137,400"))
+                    mMap!!.addMarker(MarkerOptions().position(latLng).title(location).snippet("Hello Sahabat Tokopedia"))
                     mMap!!.animateCamera(CameraUpdateFactory.newLatLng(latLng))
                     Toast.makeText(applicationContext, address.latitude.toString() + " " + address.longitude, Toast.LENGTH_LONG).show()
                 }
