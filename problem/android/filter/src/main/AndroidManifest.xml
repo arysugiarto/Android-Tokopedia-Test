@@ -5,7 +5,7 @@
         <activity android:name=".view.ProductActivity"
             android:label="@string/filter">
         </activity>
-        <activity android:name=".view.FilterActivity"
+        <activity android:name=".view.Produk"
             android:label="@string/filter"/>
         <activity android:name=".view.FilterCaseActivity"
             android:label="@string/filter"/>

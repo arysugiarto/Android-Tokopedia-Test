@@ -16,7 +16,7 @@ class FilterCaseActivity : AppCompatActivity() {
         val webView = findViewById<WebView>(R.id.webView)
         webView.loadFile("filter.html")
         findViewById<View>(R.id.btn_simulate).setOnClickListener {
-            startActivity(Intent(this, ProductActivity::class.java))
+            startActivity(Intent(this, Produk::class.java))
         }
     }
 

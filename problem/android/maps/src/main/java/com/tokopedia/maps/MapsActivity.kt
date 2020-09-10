@@ -45,7 +45,6 @@ class MapsActivity : AppCompatActivity(), KountryListFragment.OnFragmentInteract
     override fun onFragmentInteraction(uri: Uri) {
     }
 
-
     //    maps
     private var mMap: GoogleMap? = null
     internal lateinit var mLastLocation: Location
