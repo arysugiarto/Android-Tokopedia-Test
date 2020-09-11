@@ -1,4 +1,4 @@
-package com.tokopedia.maps
+package com.tokopedia.maps.utils
 
 import android.graphics.Rect
 import android.view.View

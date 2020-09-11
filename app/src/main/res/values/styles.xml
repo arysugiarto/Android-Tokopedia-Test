@@ -12,8 +12,9 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="buttonBarButtonStyle">@style/BottomSheetStyle</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -26,4 +27,31 @@
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     <style name="AppBarOverlay" parent="Theme.AppCompat.Light.NoActionBar"/>
 
+    <style name="ChipStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Your style -->
+    </style>
+    <style name="TextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#aacbb4</item>
+    </style>
+
+    
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="buttonBarButtonStyle">@style/BottomSheetStyle</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <dimen name="normal_padding">16</dimen>
+    <dimen name="drawable_padding">16</dimen>
+    <dimen name="text_size">14</dimen>
 </resources>

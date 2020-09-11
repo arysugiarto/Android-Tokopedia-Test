@@ -6,6 +6,7 @@ import android.view.View
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.tokopedia.core.loadFile
+import com.tokopedia.maps.ui.MapsActivity
 
 class MapsCaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

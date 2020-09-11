@@ -7,6 +7,7 @@ import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.tokopedia.core.loadFile
 import com.tokopedia.filter.R
+import com.tokopedia.filter.view.ui.ProdukActivity
 
 class FilterCaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,7 @@ class FilterCaseActivity : AppCompatActivity() {
         val webView = findViewById<WebView>(R.id.webView)
         webView.loadFile("filter.html")
         findViewById<View>(R.id.btn_simulate).setOnClickListener {
-            startActivity(Intent(this, Produk::class.java))
+            startActivity(Intent(this, ProdukActivity::class.java))
         }
     }
 

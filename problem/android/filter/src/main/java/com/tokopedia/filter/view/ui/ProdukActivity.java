@@ -1,14 +1,14 @@
-package com.tokopedia.filter.view;
+package com.tokopedia.filter.view.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tokopedia.filter.R;
+import com.tokopedia.filter.view.adapter.FilterAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,10 +17,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Produk extends AppCompatActivity {
-    Produk activity;
+public class ProdukActivity extends AppCompatActivity implements ActionBottomDialogFragment.ItemClickListener {
+    ProdukActivity activity;
     RecyclerView rvContact;
-    ContactAdapter contactAdapter;
+    FilterAdapter filterAdapter;
+    private final String TAG = "Chips Example";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +29,31 @@ public class Produk extends AppCompatActivity {
         activity = this;
         rvContact = findViewById(R.id.product_list);
 
-        Adapt();
+//        /*Choice Chip Section*/
+//        ChipGroup choiceChipGroup = findViewById(R.id.chip_group_choice);
+//        choiceChipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(ChipGroup chipGroup, @IdRes int i) {
+//                Log.i(TAG, i + "");
+//                Adapt();
+//                if ()
+//            }
+//        });
+
+        getData();
     }
 
-    public void Adapt() {
+    public void showBottomSheet(View view) {
+        ActionBottomDialogFragment addPhotoBottomDialogFragment =
+                ActionBottomDialogFragment.newInstance();
+        addPhotoBottomDialogFragment.show(getSupportFragmentManager(),
+                ActionBottomDialogFragment.TAG);
+    }
+    @Override public void onItemClick(String item) {
+
+    }
+
+    public void getData() {
         try {
             JSONObject obj = new JSONObject(loadJSONFromAssets());
             String status = obj.getString("status");
@@ -53,9 +75,9 @@ public class Produk extends AppCompatActivity {
 
                     contactList.add(contact);
                 }
-                contactAdapter = new ContactAdapter(activity, contactList);
+                filterAdapter = new FilterAdapter(activity, contactList);
                 rvContact.setLayoutManager(new GridLayoutManager(this,2));
-                rvContact.setAdapter(contactAdapter);
+                rvContact.setAdapter(filterAdapter);
             }
         } catch (Exception e) {
             e.printStackTrace();

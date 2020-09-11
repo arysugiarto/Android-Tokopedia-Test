@@ -1,8 +1,7 @@
-package com.tokopedia.filter.view;
+package com.tokopedia.filter.view.adapter;
 
 import android.app.Activity;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,30 +10,30 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.request.RequestOptions;
 import com.tokopedia.filter.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
+public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterViewHolder> {
     private ArrayList<HashMap<String, String>> data;
     private static LayoutInflater inflater = null;
     public Resources res;
 
-    public ContactAdapter(Activity activity, ArrayList<HashMap<String, String>> data) {
+    public FilterAdapter(Activity activity, ArrayList<HashMap<String, String>> data) {
         this.data = data;
         inflater = LayoutInflater.from(activity);
     }
 
     @Override
-    public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FilterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.main_item, parent, false);
-        return new ContactViewHolder(view);
+        return new FilterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ContactViewHolder holder, final int position) {
+    public void onBindViewHolder(final FilterViewHolder holder, final int position) {
         String name = data.get(position).get("name");
         String priceInt = data.get(position).get("priceInt");
         String city = data.get(position).get("city");
@@ -46,9 +45,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 //                .crossFade()
 //                .into(flag);
 
+//        Glide.with(holder.itemView.getContext())
+//                .load(activity.getApplicationContext().getResources().getIdentifier(data.get(position).get("imageUrl"), "assets", activity.getApplicationContext().getPackageName()))
+//                .apply(RequestOptions.placeholderOf(R.drawable.ic_baseline_star_24)
+//                        .error(R.drawable.ic_baseline_star_24))
+//                .into(holder.imageView);
+
         holder.tvName.setText(name);
         holder.tvPrice.setText(priceInt);
         holder.tvCity.setText(city);
+//        holder.Item.setText(image);
     }
 
 
@@ -58,10 +64,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         return data.size();
     }
 
-    class ContactViewHolder extends RecyclerView.ViewHolder {
+    class FilterViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvPrice,tvCity;
 
-        ContactViewHolder(View itemView) {
+        FilterViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.title);
             tvPrice = itemView.findViewById(R.id.price);

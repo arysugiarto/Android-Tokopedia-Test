@@ -11,11 +11,10 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.tokopedia.maps.GridSpacingItemDecoration
 import com.tokopedia.maps.R
+import com.tokopedia.maps.adapter.KountryListAdapter
 import com.tokopedia.maps.api.ApiClient
 import com.tokopedia.maps.api.AppConstants
 import com.tokopedia.maps.model.Kountry
