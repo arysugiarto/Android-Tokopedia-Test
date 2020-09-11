@@ -64,8 +64,8 @@
         android:layout_height="wrap_content"
         app:floatingLabel="false"
         android:value="12.34"
-        android:valueFrom="12.000"
-        android:valueTo="100.000.000" />
+        android:valueFrom="12000"
+        android:valueTo="1000000" />
 
     <Button
         android:layout_width="match_parent"
