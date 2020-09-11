@@ -6,6 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="400dp"
     android:background="@drawable/bottom_sheet">
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/abu"
+        android:background="@color/abu"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="13dp"
+        android:layout_marginLeft="13dp"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:text="@string/urut"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -68,11 +85,12 @@
         android:valueTo="1000000" />
 
     <Button
+        android:id="@+id/filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="13dp"
         android:layout_marginBottom="10dp"
-        android:text="Apply Filter"/>
+        android:text="@string/urutkan" />
 </LinearLayout>

@@ -1,12 +1,16 @@
 package com.tokopedia.filter.view.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.ChipGroup;
 import com.tokopedia.filter.R;
 import com.tokopedia.filter.view.adapter.FilterAdapter;
 
@@ -26,19 +30,9 @@ public class ProdukActivity extends AppCompatActivity implements ActionBottomDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+     
         activity = this;
         rvContact = findViewById(R.id.product_list);
-
-//        /*Choice Chip Section*/
-//        ChipGroup choiceChipGroup = findViewById(R.id.chip_group_choice);
-//        choiceChipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(ChipGroup chipGroup, @IdRes int i) {
-//                Log.i(TAG, i + "");
-//                Adapt();
-//                if ()
-//            }
-//        });
 
         getData();
     }
@@ -67,12 +61,13 @@ public class ProdukActivity extends AppCompatActivity implements ActionBottomDia
                     String name = contacts.getString("name");
                     String priceInt = contacts.getString("priceInt");
                     String city = contacts.getString("city");
+                    String image = contacts.getString("imageUrl");
 
                     contact = new HashMap<>();
                     contact.put("name", name);
                     contact.put("priceInt", priceInt);
                     contact.put("city", city);
-
+                    contact.put("imageUrl", image);
                     contactList.add(contact);
                 }
                 filterAdapter = new FilterAdapter(activity, contactList);

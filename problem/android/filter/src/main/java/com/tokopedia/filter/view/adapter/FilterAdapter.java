@@ -5,12 +5,14 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.squareup.picasso.Picasso;
 import com.tokopedia.filter.R;
 
 import java.util.ArrayList;
@@ -38,23 +40,15 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
         String priceInt = data.get(position).get("priceInt");
         String city = data.get(position).get("city");
 
-//        String image = data.get(position).get("imageUrl");
-//        Glide.with(getContext())
-//                .load("imageUrl")
-//                .centerCrop()
-//                .crossFade()
-//                .into(flag);
 
-//        Glide.with(holder.itemView.getContext())
-//                .load(activity.getApplicationContext().getResources().getIdentifier(data.get(position).get("imageUrl"), "assets", activity.getApplicationContext().getPackageName()))
-//                .apply(RequestOptions.placeholderOf(R.drawable.ic_baseline_star_24)
-//                        .error(R.drawable.ic_baseline_star_24))
-//                .into(holder.imageView);
+        Glide.with(holder.itemView.getContext())
+                .load(data.get(position).get("imageUrl"))
+                .into(holder.image);
 
         holder.tvName.setText(name);
         holder.tvPrice.setText(priceInt);
         holder.tvCity.setText(city);
-//        holder.Item.setText(image);
+//        holder.image.setText(i);
     }
 
 
@@ -66,12 +60,14 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
 
     class FilterViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvPrice,tvCity;
+        ImageView image;
 
         FilterViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.title);
             tvPrice = itemView.findViewById(R.id.price);
             tvCity = itemView.findViewById(R.id.lokasi);
+            image = itemView.findViewById(R.id.imageView);
         }
     }
 }

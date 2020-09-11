@@ -3,4 +3,6 @@
     <string name="filter">Filter</string>
     <string name="price">Harga</string>
     <string name="lokasi">Lokasi</string>
+    <string name="urut">Urutkan Berdasarkan</string>
+    <string name="urutkan">Urutkan</string>
 </resources>
