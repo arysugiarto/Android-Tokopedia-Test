@@ -29,7 +29,7 @@ object Solution {
                     }
                     else
                     {
-                        A[i][j] = matrix[i][j] 
+                        A[i][j] = matrix[i][j]
                     }
                 }
                 else
