@@ -23,9 +23,6 @@ import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.alert
 
 // TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//private const val ARG_PARAM1 = "param1"
-//private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -64,11 +61,6 @@ class KountryListFragment : Fragment() {
         return view
     }
 
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
-    }
 
     fun showNetworkWarning(view: View) {
         view.context.alert("Please connect with internet","Warning") {
@@ -101,8 +93,7 @@ class KountryListFragment : Fragment() {
 
     fun prepareRecyclerView(view: View) {
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView!!.layoutManager = GridLayoutManager(view.context,3) as RecyclerView.LayoutManager?;
-//        recyclerView!!.addItemDecoration(GridSpacingItemDecoration(2, dpToPx(10), true))
+        recyclerView!!.layoutManager = GridLayoutManager(view.context,3)
         recyclerView!!.setItemAnimator(DefaultItemAnimator())
     }
 
@@ -161,10 +152,6 @@ class KountryListFragment : Fragment() {
         fun onFragmentInteraction(uri: Uri)
     }
 
-    private fun dpToPx(dp: Int): Int {
-        val r = resources
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), r.displayMetrics))
-    }
 
     companion object {
         private val ARG_PARAM1 = "param1"

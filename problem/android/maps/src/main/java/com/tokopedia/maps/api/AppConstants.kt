@@ -11,7 +11,6 @@ class AppConstants {
 
         //base url for country flag
         val BASE_URL_FLAG = "https://raw.githubusercontent.com/emcrisostomo/flags/master/png/256/"
-        val ALPHA_2_CODE_EXTRA = "KOUNTRY_NAME"
 
         fun isConnectedWithNetwork(context: Context): Boolean {
 
@@ -20,11 +19,5 @@ class AppConstants {
             return networkInfo != null && networkInfo.isConnected
         }
 
-        fun randInt(min: Int, max: Int): Int {
-
-            val rand = Random()
-            val randomNum = rand.nextInt(max - min + 1) + min
-            return randomNum - 1
-        }
     }
 }

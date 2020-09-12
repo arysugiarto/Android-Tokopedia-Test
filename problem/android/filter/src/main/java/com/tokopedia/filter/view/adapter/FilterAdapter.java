@@ -48,7 +48,6 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
         holder.tvName.setText(name);
         holder.tvPrice.setText(priceInt);
         holder.tvCity.setText(city);
-//        holder.image.setText(i);
     }
 
 

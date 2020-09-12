@@ -21,15 +21,15 @@ object Solution {
                 {
                     if (i == 0 && j != 0)
                     {
-                        A[i][j] = A[i][j - 1] + matrix[i][j] // first row value equal to the previous value plus the current value of a
+                        A[i][j] = A[i][j - 1] + matrix[i][j]
                     }
                     else if (i != 0 && j == 0)
                     {
-                        A[i][j] = A[i - 1][j] + matrix[i][j] // first column value plus the current value is equal to the lattice
+                        A[i][j] = A[i - 1][j] + matrix[i][j]
                     }
                     else
                     {
-                        A[i][j] = matrix[i][j] // start point to itself as a starting point the value of
+                        A[i][j] = matrix[i][j] 
                     }
                 }
                 else

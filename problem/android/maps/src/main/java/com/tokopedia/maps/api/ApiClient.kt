@@ -12,9 +12,6 @@ interface ApiClient {
     @GET("rest/v2/all")
     fun getAllKountries(): Observable<ArrayList<Kountry>>
 
-//    @GET("rest/v2/alpha/{code}")
-//    fun getKountry(@Path("code") alpha2Code: String): Observable<Kountry>
-
     companion object Factory {
         fun create(): ApiClient {
             val retrofit = Retrofit.Builder()

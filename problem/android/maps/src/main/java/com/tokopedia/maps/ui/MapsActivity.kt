@@ -57,8 +57,7 @@ class MapsActivity : AppCompatActivity(), KountryListFragment.OnFragmentInteract
     var toolbar: Toolbar? = null
     var kountryListFragment: KountryListFragment? = null
 
-    //    var aboutFragment: RandomFragment? = null
-//    var bottomNavigationView: BottomNavigationView? = null
+
     var searchView: SearchView? = null
 
     // bottom navigation item selection
@@ -71,11 +70,6 @@ class MapsActivity : AppCompatActivity(), KountryListFragment.OnFragmentInteract
                     toolbar!!.visibility = View.VISIBLE
                     return true
                 }
-//                R.id.favorite -> {
-//                    addFragment(aboutFragment!!,kountryListFragment!!)
-//                    toolbar!!.visibility = View.INVISIBLE
-//                    return true
-//                }
             }
             return false
         }
@@ -106,7 +100,6 @@ class MapsActivity : AppCompatActivity(), KountryListFragment.OnFragmentInteract
         prepareToolBar()
 //        prepareBottomNavView()
         kountryListFragment = KountryListFragment.Companion.newInstance("", "")
-//        aboutFragment = RandomFragment.Companion.newInstance("","")
     }
 
     fun prepareToolBar() {

@@ -33,15 +33,4 @@
         android:layout_below="@+id/toolbar"
         android:layout_above="@+id/navigation_bottom">
     </FrameLayout>
-
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/navigation_bottom"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:background="@color/white"-->
-<!--        app:itemIconTint="@color/menu_item_foreground"-->
-<!--        app:itemTextColor="@color/menu_item_foreground"-->
-<!--        app:menu="@menu/bottom_tab_bar_items" />-->
-
 </LinearLayout>
